@@ -159,3 +159,17 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+# values.yaml
+neo4j:
+  neo4j:
+    # Mandatory: The internal name for the Neo4j instance
+    name: "parish-records-kg"
+    # Select edition: "community" (default) or "enterprise"
+    edition: "community"
+    # Accept the license if using Enterprise edition
+    acceptLicenseAgreement: "no"
+
+neodash:
+  neo4j:
+    url: "bolt://my-neo4j-service:7687"
