@@ -1,0 +1,27 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches: [ "main" ] # Trigger on pushes to the main branch
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write # Required to push to GHCR
+
+    steps:
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          # The 'context' is the directory used for the build (e.g., where your code is)
+          context: ./streamlit_submission
+          # The 'file' is the relative path to the Dockerfile from the root of the repo
+          file: ./streamlit_submission/dockerFile
+          push: true
+          tags: parish_records_kg/streamlit_submission:latest

@@ -11,6 +11,8 @@
 
 2) Helm
 
+Kubectl
+
 3) Internet Access
 
 ## How to run
