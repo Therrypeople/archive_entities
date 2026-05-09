@@ -1,0 +1,38 @@
+name: Ray Docker Build
+on:
+  push:
+    branches: [ "main" ] # Trigger on pushes to the main branch
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write # Required to push to GHCR
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Log in to GHCR
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Lowercase the repo name
+      run: echo "REPO_LC=${GITHUB_REPOSITORY,,}" >> ${GITHUB_ENV}
+    
+    - name: Build and push
+      uses: docker/build-push-action@v6
+      with:
+        # The 'context' is the directory used for the build (e.g., where your code is)
+        context: ./ray_image
+        # The 'file' is the relative path to the Dockerfile from the root of the repo
+        file: ./ray_image/dockerFile
+        push: true
+        tags: ghcr.io/${{ env.REPO_LC }}/ray:latest

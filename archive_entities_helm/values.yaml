@@ -2,7 +2,9 @@ ray:
 
 neodash:
 
+
 streamlit:
+  port: 8501
 
 # values.yaml
 neo4j:

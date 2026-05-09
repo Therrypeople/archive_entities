@@ -1,4 +1,4 @@
-name: Build and publish a Docker image to ghcr.io
+name: Streamlit Docker Build
 on:
   push:
     branches: [ "main" ] # Trigger on pushes to the main branch
@@ -35,4 +35,4 @@ jobs:
         # The 'file' is the relative path to the Dockerfile from the root of the repo
         file: ./streamlit_submission/dockerFile
         push: true
-        tags: ghcr.io/${{ env.REPO_LC }}:latest
+        tags: ghcr.io/${{ env.REPO_LC }}/streamlit:latest

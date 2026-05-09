@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: streamlit-service
+spec:
+  selector:
+    app: streamlit
+  ports:
+    - protocol: TCP
+      port: {{.Values.streamlit.svc.port}}
+      targetPort: {{.Values.streamlit.svc.targetPort}}
+  type: LoadBalancer # Change to ClusterIP if using an Ingress
