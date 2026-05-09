@@ -11,7 +11,7 @@ st.title("Upload Scans")
 
 # Initialise Ray Context from RAY_ADDRESS env variable
 try:
-    ray.innit()
+    ray.init()
 except Exception as e:
     logging.warning(f"Failed to initialise ray context: {e}")
 # Initialise Neo4j connection and db:
@@ -28,7 +28,7 @@ with st.container(horizontal=True):
     st.link_button("Neo4j Dashboard", "https://google.com")
 
 status = st.empty()
-if uploaded_files is not None:
+if uploaded_files:
     try:
         status.write(f"Status: Processing {len(uploaded_files)} files")
         extracted_documents = ray_extract_entities([(file,file.name) for file in uploaded_files])
