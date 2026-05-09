@@ -55,3 +55,6 @@ This repository aims to demonstrate the use of:
 ### Streamlit Submission, Processing.
 
 ### Example CI/CD for Streamlit
+
+Please ensure that the README.md is concise and
+suitably descriptive.
