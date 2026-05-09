@@ -1,0 +1,27 @@
+apiVersion: ray.io/v1
+kind: RayCluster
+metadata:
+  name: raycluster-sample
+spec:
+  rayVersion: '2.9.0' # Specify your Ray version
+  headGroupSpec:
+    rayStartParams:
+      dashboard-host: '0.0.0.0'
+    template:
+      spec:
+        containers:
+          - name: ray-head
+            image: rayproject/ray:2.9.0
+            resources:
+              limits: {cpu: "1", memory: "2Gi"}
+  workerGroupSpecs:
+  - replicas: 2
+    minReplicas: 1
+    maxReplicas: 5
+    groupName: small-group
+    rayStartParams: {}
+    template:
+      spec:
+        containers:
+          - name: ray-worker
+            image: rayproject/ray:2.9.0

@@ -2,15 +2,16 @@ import streamlit as st
 import pandas as pd
 import time
 
-st.title("Upload Parish Records")
+st.title("Upload Births Deaths and Records")
 
 # Create the file uploader widget
 uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
-entity1_column = st.text_input("Person One Column")
-entity2_column = st.text_input("Person Two Column")
-relationship_column = st.text_input("Relationship Column")
 
+def write_to_neo4j():
+    ...
 
+def ray_extract_entities():
+    ...
 
 
 
