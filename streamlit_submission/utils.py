@@ -1,19 +1,20 @@
-from neo4j import GraphDatabase
+from neo4j import GraphDatabase, Driver
 from PIL import Image
 import ray
 from dataclasses import dataclass
 import hashlib
 from pathlib import Path
+from pydantic_settings import BaseSettings, SettingsConfigDict
+from paddleocr import PaddleOCR
+import re
 
-class Neo4JDatabase():
-    driver
+class Neo4JSettings(BaseSettings):
+    """"""
+    model_config = SettingsConfigDict(env_prefix='NEO4J_')
 
-    def __init__(self, uri, auth):
-        pass
-    ...
-
-class OCRRayCluster():
-    ...
+    uri: str
+    username: str
+    password: str
 
 
 @dataclass
@@ -23,27 +24,30 @@ class ExtractedDocument():
     document_hash : str
     document_entities : list[str]
 
-
-def upload_extracted_document(self, extraction : ExtractedDocument):
+class Neo4JDatabase():
     """"""
+    driver: Driver
 
-    # Create document node
-    self.driver.execute_query("MERGE ($hash:Document {name: $name, hash: $hash})", 
-                                  hash=extraction.document_hash,
-                                  name=extraction.document_title)
-    # Create entity nodes and connections
-    for entity in extraction.document_entities:
-        self.driver.execute_query("MERGE ($entity:Entity {name: $name})", 
-                                  entity=entity,
-                                  name=entity,)
-        self.driver.execute_query("MATCH (a:Document {hash: $hash}), (b:Entity {name: $name}) CREATE (b)-[:FROM]->(a)", 
-                                  hash=extraction.document_hash,
-                                  name=entity)
+    def __init__(self, settings: Neo4JSettings):
+        self.driver = GraphDatabase.driver(settings.uri,
+                                           auth=(settings.username,settings.password))
 
+    def upload_extracted_document(self, extraction : ExtractedDocument):
+        """"""
 
-with GraphDatabase.driver(URI, auth=AUTH) as driver:
-    driver.verify_connectivity()
-    create_person(driver, "Alice")
+        # Create document node
+        self.driver.execute_query("MERGE ($hash:Document {name: $name, hash: $hash})", 
+                                    hash=extraction.document_hash,
+                                    name=extraction.document_title)
+        # Create entity nodes and connections
+        for entity in extraction.document_entities:
+            self.driver.execute_query("MERGE ($entity:Entity {name: $name})", 
+                                    entity=entity,
+                                    name=entity,)
+            self.driver.execute_query("MATCH (a:Document {hash: $hash}), (b:Entity {name: $name}) CREATE (b)-[:FROM]->(a)", 
+                                    hash=extraction.document_hash,
+                                    name=entity)
+
 
 def write_to_neo4j():
     ...

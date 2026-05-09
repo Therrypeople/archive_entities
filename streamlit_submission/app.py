@@ -2,7 +2,12 @@ import streamlit as st
 import pandas as pd
 import time
 
+# Initialise Ray Context
+
+
+
 st.title("Upload Births Deaths and Records")
+
 
 # Create the file uploader widget
 uploaded_file = st.file_uploader("Choose a CSV file", type="csv")

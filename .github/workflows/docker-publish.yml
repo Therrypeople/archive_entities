@@ -18,6 +18,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+
+
     - name: Build and push
       uses: docker/build-push-action@v6
       with:
@@ -26,4 +28,4 @@ jobs:
         # The 'file' is the relative path to the Dockerfile from the root of the repo
         file: ./streamlit_submission/dockerFile
         push: true
-        tags: archive_entities/streamlit_submission:latest
+        tags: ghcr.io/${{ github.repository }}:latest

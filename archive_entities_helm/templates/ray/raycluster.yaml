@@ -3,7 +3,7 @@ kind: RayCluster
 metadata:
   name: raycluster-sample
 spec:
-  rayVersion: '2.9.0' # Specify your Ray version
+  rayVersion: '2.9.0'
   headGroupSpec:
     rayStartParams:
       dashboard-host: '0.0.0.0'
