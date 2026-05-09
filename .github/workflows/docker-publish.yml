@@ -16,12 +16,15 @@ jobs:
       packages: write # Required to push to GHCR
 
     steps:
+      steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
           # The 'context' is the directory used for the build (e.g., where your code is)
-          context: streamlit_submission
+          context: ./streamlit_submission
           # The 'file' is the relative path to the Dockerfile from the root of the repo
-          file: streamlit_submission/dockerFile
+          file: ./streamlit_submission/dockerFile
           push: true
           tags: archive_entities/streamlit_submission:latest
