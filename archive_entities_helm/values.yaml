@@ -19,4 +19,4 @@ neo4j:
 
 neodash:
   neo4j:
-    url: "bolt://my-neo4j-service:7687"
+    url: "neo4j://my-neo4j-service:7687"

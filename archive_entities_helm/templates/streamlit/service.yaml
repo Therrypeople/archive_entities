@@ -8,5 +8,5 @@ spec:
   ports:
     - protocol: TCP
       port: {{.Values.streamlit.svc.port}}
-      targetPort: {{.Values.streamlit.svc.targetPort}}
+      targetPort: {{.Values.streamlit.svc.port}}
   type: LoadBalancer # Change to ClusterIP if using an Ingress

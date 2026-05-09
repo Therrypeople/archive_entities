@@ -11,9 +11,9 @@ spec:
       spec:
         containers:
           - name: ray-head
-            image: rayproject/ray:2.9.0
+            image: {{.Values.ray.image}}
             resources:
-              limits: {cpu: "1", memory: "1Gi"}
+              limits: {cpu: "1", memory: "2Gi"}
   workerGroupSpecs:
   - replicas: 1
     minReplicas: 1
@@ -24,6 +24,6 @@ spec:
       spec:
         containers:
           - name: ray-worker
-            image: rayproject/ray:2.9.0
+            image: {{.Values.ray.image}}
             resources:
-              limits: {cpu: "1", memory: "1Gi"}
+              limits: {cpu: "1", memory: "2Gi"}

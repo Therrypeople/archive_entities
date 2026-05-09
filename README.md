@@ -1,13 +1,21 @@
 
-# parish_records_kg
+# Archive Entities
 
-Births Deaths and Marriages Extraction and Knowledge Graph
-
-## Background
+## Aim
 
 
+This repository aims to demonstrate the use of:
+- MlFlow, Ray, Kubeflow, Kserve
+- Devops Pipelines
+- K8s and Docker
+- Data Curation, Engineering Wrangling
+- Optimisation of Model Serving
 
-## Pre-requisites
+## Structure
+
+## How to run
+
+### Pre-requisites
 
 1) Docker
 
@@ -17,10 +25,10 @@ Kubectl
 
 3) Internet Access
 
-## How to run
+### Running Locally
 
+1) First run the below command to stand up the cluster and associated applications. Note: some additional configuration may be required to get the ports to line up for local K3D ingress.
 
-1)
 ```
 make standup
 
@@ -32,29 +40,6 @@ make standup
 ```
 make standdown
 ```
-
-## Purpose
-
-This repository aims to demonstrate the use of:
-- MlFlow, Ray, Kubeflow, Kserve
-- Devops Pipelines
-- K8s and Docker
-- Data Curation, Engineering Wrangling
-- Optimisation of Model Serving
-
-## Structure
-
-### K3D Kuberenetes Cluster
-
-### Ray Cluster for Data Ingest and LLM Based Entity Resolution
-
-### Neo4j
-
-### NeoDash
-
-### Streamlit Submission, Processing.
-
-### Example CI/CD for Streamlit
 
 Please ensure that the README.md is concise and
 suitably descriptive.

@@ -16,7 +16,7 @@ spec:
       - name: streamlit
         image: your-docker-image:latest
         ports:
-        - containerPort: 8501
+        - containerPort: {{.Values.streamlit.port}}
         env: # Need to add other ray and neo4j startup values
         - name: RAY_ADDRESS
           value: "abc"
