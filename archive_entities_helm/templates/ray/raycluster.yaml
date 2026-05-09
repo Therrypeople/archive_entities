@@ -13,15 +13,17 @@ spec:
           - name: ray-head
             image: rayproject/ray:2.9.0
             resources:
-              limits: {cpu: "1", memory: "2Gi"}
+              limits: {cpu: "1", memory: "1Gi"}
   workerGroupSpecs:
   - replicas: 1
     minReplicas: 1
     maxReplicas: 1
-    groupName: small-group
+    groupName: default-group
     rayStartParams: {}
     template:
       spec:
         containers:
           - name: ray-worker
             image: rayproject/ray:2.9.0
+            resources:
+              limits: {cpu: "1", memory: "1Gi"}

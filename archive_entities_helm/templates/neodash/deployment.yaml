@@ -23,16 +23,3 @@ spec:
         env:
         - name: neodash_standalone
           value: "false" # Set to "true" for read-only mode
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: neodash-service
-spec:
-  selector:
-    app: neodash
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 5005
-  type: LoadBalancer # Change to ClusterIP if using an Ingress
