@@ -15,9 +15,9 @@ spec:
             resources:
               limits: {cpu: "1", memory: "2Gi"}
   workerGroupSpecs:
-  - replicas: 2
+  - replicas: 1
     minReplicas: 1
-    maxReplicas: 5
+    maxReplicas: 1
     groupName: small-group
     rayStartParams: {}
     template:

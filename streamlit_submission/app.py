@@ -1,29 +1,17 @@
 import streamlit as st
 import pandas as pd
 import time
+import ray
+from utils import Neo4JSettings, ExtractedDocument, Neo4JDatabase
+from utils import ray_extract_entities
 
-# Initialise Ray Context
+st.title("Upload archival scans")
 
+# Initialise Ray Context from RAY_ADDRESS env variable
+ray.innit()
 
-
-st.title("Upload Births Deaths and Records")
-
-
-# Create the file uploader widget
-uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
-
-def write_to_neo4j():
-    ...
-
-def ray_extract_entities():
-    ...
-
-
-
+uploaded_files = st.file_uploader("Choose files", accept_multiple_files=True, type=["png","jpg"])
 
 with st.container(horizontal=True):
-    if st.button("Submit"):
-        time.sleep(3)
-
     st.link_button("Ray Processing Dashboard", "https://google.com")
     st.link_button("Neo4j Dashboard", "https://google.com")

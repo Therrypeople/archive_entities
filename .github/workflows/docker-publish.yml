@@ -1,31 +1,17 @@
-name: Build and Push Docker Image
-
+name: Build and publish a Docker image to ghcr.io
 on:
   push:
-    branches: [ "main" ] # Trigger on pushes to the main branch
-
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
-
+    branches: [ "main" ]
 jobs:
-  build-and-push:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write # Required to push to GHCR
-
+  docker_publish:
+    runs-on: "ubuntu-20.04"
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-
-    - name: Build and push
-      uses: docker/build-push-action@v6
-      with:
-        # The 'context' is the directory used for the build (e.g., where your code is)
-        context: ./streamlit_submission
-        # The 'file' is the relative path to the Dockerfile from the root of the repo
-        file: ./streamlit_submission/dockerFile
-        push: true
-        tags: ghcr.io/${{ github.repository }}:latest
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build and publish a Docker image for ${{ github.repository }}
+        uses: macbre/push-to-ghcr@master
+        with:
+          image_name: ${{ github.repository }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          context: ./streamlit_submission
+          file: ./streamlit_submission/dockerFile

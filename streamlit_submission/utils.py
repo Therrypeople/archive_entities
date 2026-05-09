@@ -11,11 +11,14 @@ import re
 class Neo4JSettings(BaseSettings):
     """"""
     model_config = SettingsConfigDict(env_prefix='NEO4J_')
-
     uri: str
     username: str
     password: str
 
+class RaySettings(BaseSettings):
+    """"""
+    model_config = SettingsConfigDict(env_prefix='RAY_')
+    address: str
 
 @dataclass
 class ExtractedDocument():
@@ -47,10 +50,6 @@ class Neo4JDatabase():
             self.driver.execute_query("MATCH (a:Document {hash: $hash}), (b:Entity {name: $name}) CREATE (b)-[:FROM]->(a)", 
                                     hash=extraction.document_hash,
                                     name=entity)
-
-
-def write_to_neo4j():
-    ...
 
 def ray_extract_entities(file_paths : list[Path]) -> list[ExtractedDocument]:
     """"""

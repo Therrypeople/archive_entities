@@ -1,6 +1,20 @@
-# Default values for archive_entities_helm.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+ray:
+
+neodash:
+
+streamlit:
+
+# values.yaml
+neo4j:
+  neo4j:
+    # Mandatory: The internal name for the Neo4j instance
+    name: "parish-records-kg"
+    # Select edition: "community" (default) or "enterprise"
+    edition: "community"
+    # Accept the license if using Enterprise edition
+    acceptLicenseAgreement: "no"
+
+
 
 # This will set the replicaset count more information can be found here: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
 replicaCount: 1
@@ -160,15 +174,7 @@ tolerations: []
 
 affinity: {}
 
-# values.yaml
-neo4j:
-  neo4j:
-    # Mandatory: The internal name for the Neo4j instance
-    name: "parish-records-kg"
-    # Select edition: "community" (default) or "enterprise"
-    edition: "community"
-    # Accept the license if using Enterprise edition
-    acceptLicenseAgreement: "no"
+
 
 neodash:
   neo4j:
