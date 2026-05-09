@@ -3,9 +3,13 @@ from PIL import Image
 import ray
 from dataclasses import dataclass
 import hashlib
+from pathlib import Path
 
 class Neo4JDatabase():
     driver
+
+    def __init__(self, uri, auth):
+        pass
     ...
 
 class OCRRayCluster():
@@ -44,21 +48,22 @@ with GraphDatabase.driver(URI, auth=AUTH) as driver:
 def write_to_neo4j():
     ...
 
-def ray_extract_entities(self, file_paths : list[str]) -> list[ExtractedDocument]:
+def ray_extract_entities(file_paths : list[Path]) -> list[ExtractedDocument]:
     """"""
-    futures = []
-    # Load data into ray cluster as PIL
+    # Load data into ray cluster
+    ray_references = []
     for i in range(len(file_paths)):
-        file_reference_name = f"pil_image_{i}"
-        globals()[file_reference_name] = Image.open(file_paths[i])
-        self.ray_context.put(globals()[file_reference_name])
-        file_reference_names.append(file_reference_name)
-
-    images = [ for path in file_paths:
-        img = 
+        ray_dict = {"image": Image.open(file_paths[i]),
+                    "image_name": file_paths[i].name,
+                    }
+        ray_references.append(ray.put(ray_dict))
         
+    # Submit ray jobs to process data
+    results = ray.get([
+        ocr_extract_entities.remote(**image) for image in ray_references
+    ])
 
-    ...
+    return [ExtractedDocument(**result) for result in results] 
 
 @ray.remote
 def ocr_extract_entities(image: Image, image_name: str) -> dict:

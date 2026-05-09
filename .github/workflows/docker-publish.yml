@@ -20,8 +20,8 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           # The 'context' is the directory used for the build (e.g., where your code is)
-          context: ./streamlit_submission
+          context: streamlit_submission
           # The 'file' is the relative path to the Dockerfile from the root of the repo
-          file: ./streamlit_submission/dockerFile
+          file: streamlit_submission/dockerFile
           push: true
-          tags: parish_records_kg/streamlit_submission:latest
+          tags: archive_entities/streamlit_submission:latest
