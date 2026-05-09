@@ -1,24 +1,6 @@
 name: Build and publish a Docker image to ghcr.io
 on:
   push:
-    branches: [ "main" ]
-jobs:
-  docker_publish:
-    runs-on: "ubuntu-20.04"
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Build and publish a Docker image for ${{ github.repository }}
-        uses: macbre/push-to-ghcr@master
-        with:
-          image_name: ${{ github.repository }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-
-name: Build and Push Docker Image
-
-on:
-  push:
     branches: [ "main" ] # Trigger on pushes to the main branch
 
 env:
@@ -41,7 +23,7 @@ jobs:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-        
+
     - name: Build and push
       uses: docker/build-push-action@v6
       with:
