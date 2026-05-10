@@ -1,3 +1,4 @@
 Pillow
 paddlepaddle
+pytest
 paddleocr
