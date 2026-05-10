@@ -4,12 +4,10 @@
 ## Aim
 
 The purpose of this repository is to demonstrate the uses of:
-This repository aims to demonstrate the use of:
-- MlFlow, Ray, Kubeflow, Kserve
+- Ray
 - Devops Pipelines
 - K8s and Docker
-- Data Curation, Engineering Wrangling
-- Optimisation of Model Serving
+- Python for Data Processing / Wrangling
 
 The background on this project is that my dad has recently gotten very into family genealogy. A common issue he faces is the digitization and triage of low quality scans or hand written records like births deaths and marriages, and parish records.
 

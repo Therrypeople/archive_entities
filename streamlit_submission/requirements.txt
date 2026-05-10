@@ -1,3 +1,4 @@
 streamlit
 pandas
 ray==2.9.0
+neo4j
