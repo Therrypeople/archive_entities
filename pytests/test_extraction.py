@@ -8,8 +8,6 @@ def test_image_1():
 
 @pytest.fixture
 def expected_result_1():
-    
-    
     return {}
 
 @pytest.fixture
@@ -19,8 +17,6 @@ def test_image_2():
 
 @pytest.fixture
 def expected_result_2():
-    
-    
     return {}
 
 

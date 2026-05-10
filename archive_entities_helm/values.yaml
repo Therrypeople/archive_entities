@@ -1,8 +1,20 @@
 ray:
   name: raycluster
   image: ghcr.io/therrypeople/archive_entities/ray:latest
+  rayVersion: '2.9.0'
+  dashboardHost: '0.0.0.0'
+  head:
+    resources:
+      limits: {cpu: "1", memory: "2Gi"}
+  worker:
+    replicas: 1
+    minReplicas: 1
+    maxReplicas: 1
+    resources:
+      limits: {cpu: "1", memory: "2Gi"}
 
 streamlit:
+  replicas: 1
   image: ghcr.io/therrypeople/archive_entities/streamlit:latest
   port: 8501
   rayURI: raycluster-head-svc.default.svc.cluster.local:10001
@@ -13,7 +25,7 @@ streamlit:
 neo4j:
   neo4j:
     # Mandatory: The internal name for the Neo4j instance
-    name: "parish-records-kg"
+    name: "archive_entities"
     # Select edition: "community" (default) or "enterprise"
     edition: "community"
     # left blank as this is the default
@@ -24,5 +36,6 @@ neo4j:
 
 
 neodash:
+  image: nielsdejong/neodash:latest
   neo4j:
     url: "neo4j://archive-entities.default.svc.cluster.local:7687"

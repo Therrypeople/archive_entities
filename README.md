@@ -31,11 +31,11 @@ The workflow this repository enables is providing a simple GUI for him to upload
 
 2) Helm
 
-Kubectl
+3) Kubectl
 
-3) Internet Access
+4) K3D
 
-4) Create the following secrets
+5) Internet Access
 
 ### Running Locally
 
@@ -60,3 +60,6 @@ make standup
 ```
 make standdown
 ```
+## Next Steps
+
+If

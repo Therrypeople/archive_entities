@@ -16,10 +16,10 @@ spec:
     spec:
       containers:
       - name: neodash
-        image: nielsdejong/neodash:latest
+        image: {{.Values.neodash.image}}
+        imagePullPolicy: Always
         ports:
         - containerPort: 5005
-        # Optional: Set environment variables for Standalone/Reader mode
         env:
         - name: neodash_standalone
           value: "false" # Set to "true" for read-only mode

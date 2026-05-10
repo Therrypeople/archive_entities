@@ -3,21 +3,22 @@ kind: RayCluster
 metadata:
   name: {{.Values.ray.name}}
 spec:
-  rayVersion: '2.9.0'
+  rayVersion: {{.Values.ray.rayVersion}}
   headGroupSpec:
     rayStartParams:
-      dashboard-host: '0.0.0.0'
+      dashboard-host: {{.Values.ray.dashboardHost}}
     template:
       spec:
         containers:
           - name: ray-head
             image: {{.Values.ray.image}}
+            imagePullPolicy: Always
             resources:
-              limits: {cpu: "1", memory: "2Gi"}
+              limits: {{.Values.ray.head.resources.limits}}
   workerGroupSpecs:
-  - replicas: 1
-    minReplicas: 1
-    maxReplicas: 1
+  - replicas: {{.Values.ray.worker.replicas}}
+    minReplicas: {{.Values.ray.worker.minReplicas}}
+    maxReplicas: {{.Values.ray.worker.maxReplicas}}
     groupName: default-group
     rayStartParams: {}
     template:
@@ -25,5 +26,6 @@ spec:
         containers:
           - name: ray-worker
             image: {{.Values.ray.image}}
+            imagePullPolicy: Always
             resources:
-              limits: {cpu: "1", memory: "2Gi"}
+              limits: {{.Values.ray.worker.resources.limits}}

@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: streamlit-app
 spec:
-  replicas: 1
+  replicas: {{.Values.streamlit.replicas}}
   selector:
     matchLabels:
       app: streamlit
@@ -15,9 +15,10 @@ spec:
       containers:
       - name: streamlit
         image: {{.Values.streamlit.image}}
+        imagePullPolicy: Always
         ports:
         - containerPort: {{.Values.streamlit.port}}
-        env: # Need to add other ray and neo4j startup values
+        env:
         - name: RAY_ADDRESS
           value: {{.Values.streamlit.rayURI}}
         - name: NEO4J_URI
