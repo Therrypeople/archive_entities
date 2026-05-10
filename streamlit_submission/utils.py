@@ -56,18 +56,18 @@ def ocr_extract_entities(image: Image, image_name: str) -> dict:
     """ Performs OCR and entity extraction on a single image within a Ray worker. """
 
     logging.info(f"Starting processing of document: {image_name}")
-    # Regex pattern to capture captilized multiword entities longer than 3 character
-    entity_pattern = r'\b(?=.{4,})[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\b'
+    # Regex pattern to capture captilized multiword entities longer than 4 character
+    entity_pattern = r'\b[A-Z][a-z]*\b(?:\s+[A-Z][a-z]*\b)*'
     ocr = PaddleOCR(use_angle_cls=True, lang='en', enable_mkldnn=False)
     
-    result = ocr.predict(np.asarray(image))
+    result = ocr.predict(np.asarray(image.convert('RGB')))
     text = " ".join(result[0]["rec_texts"])
-    entities = re.findall(text, entity_pattern)
+    entities = re.findall(entity_pattern, text)
 
     logging.info(f"Successfully processed document: {image_name}")
     return {"document_title":image_name,
             "document_hash": hashlib.md5(image.tobytes()).hexdigest(),
-            "document_entities": entities} 
+            "document_entities": [e for e in entities if len(e)>3]} 
 
 def ray_extract_entities(images : list[tuple[str,BytesIO]]) -> list[ExtractedDocument]:
     """ Parallelises entity extraction across a Ray cluster for a list of document images. """
