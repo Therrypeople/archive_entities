@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: neodash
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+    traefik.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /s
+        pathType: Prefix
+        backend:
+          service:
+            name: streamlit-service
+            port:
+              number: 8080
+      - path: /ray
+        pathType: Prefix
+        backend:
+          service:
+            name: raycluster-head-svc
+            port:
+              number: 8265
+      - path: /neodash
+        pathType: Prefix
+        backend:
+          service:
+            name: neodash-service
+            port:
+              number: 80
