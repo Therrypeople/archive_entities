@@ -6,3 +6,4 @@ pydantic-settings
 Pillow
 paddlepaddle
 paddleocr
+numpy

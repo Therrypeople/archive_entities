@@ -8,6 +8,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 from paddleocr import PaddleOCR
 import re
 from io import BytesIO
+import numpy as np
 
 @dataclass
 class ExtractedDocument():
@@ -59,7 +60,7 @@ def ocr_extract_entities(image: Image, image_name: str) -> dict:
     entity_pattern = r'\b(?=.{4,})[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\b'
     ocr = PaddleOCR(use_angle_cls=True, lang='en', enable_mkldnn=False)
     
-    result = ocr.predict(asarray(image))
+    result = ocr.predict(np.asarray(image))
     text = " ".join(result[0]["rec_texts"])
     entities = re.findall(text, entity_pattern)
 
