@@ -7,6 +7,6 @@ spec:
     app: neodash
   ports:
     - protocol: TCP
-      port: 80
+      port: 83
       targetPort: 5005
-  type: ClusterIP # Change to ClusterIP if using an Ingress
+  type: LoadBalancer # Change to ClusterIP if using an Ingress

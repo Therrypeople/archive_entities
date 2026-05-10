@@ -4,5 +4,6 @@ secondaryBackgroundColor = "#3183D1"
 textColor = "#03080C"
 font = "sans-serif"
 
+# To prevent k3d / k8s weirdness
 [server]
 enableCORS = false

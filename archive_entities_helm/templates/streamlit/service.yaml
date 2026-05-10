@@ -7,6 +7,6 @@ spec:
     app: streamlit
   ports:
     - protocol: TCP
-      port: 8080
+      port: 82
       targetPort: {{.Values.streamlit.port}}
-  type: ClusterIP # Change to ClusterIP if using an Ingress
+  type: LoadBalancer # Change to ClusterIP if using an Ingress

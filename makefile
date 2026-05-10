@@ -1,5 +1,5 @@
 standup:
-	k3d cluster create archive-entities -p "8080:80@loadbalancer"
+	k3d cluster create archive-entities -p "8080:80@loadbalancer" -p "8070:82@loadbalancer" -p "8060:83@loadbalancer"
 	
 	helm repo add kuberay https://ray-project.github.io/kuberay-helm/
 	helm repo add neo4j https://helm.neo4j.com/neo4j
