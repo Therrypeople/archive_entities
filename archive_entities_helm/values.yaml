@@ -16,7 +16,8 @@ neo4j:
     name: "parish-records-kg"
     # Select edition: "community" (default) or "enterprise"
     edition: "community"
-    password: neo4j
+    # left blank as this is the default
+    # password: neo4j
   volumes:
     data:
       mode: defaultStorageClass

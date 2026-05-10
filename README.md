@@ -48,11 +48,11 @@ make standup
 
 2) Especially Ray may take several minutes to stand up. Once it is ready the following services will be available on your localhost:
 
-- 8060 Neo4j Dashboard 
+- (Neo4j Dashboard)[http://localhost:8060] 
 
-- 8070 Streamlit 
+- (Streamlit)[http://localhost:8070]
 
-- 8080 Ray Dashboard
+- (Ray Dashboard)[http://localhost:8080]
 
 
 3) To teardown all of the resouces run the following.
