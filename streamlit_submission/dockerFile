@@ -5,6 +5,8 @@ RUN apt-get update && apt-get install -y \
     libgomp1 \
     && rm -rf /var/lib/apt/lists/*
 
+RUN apt-get install -y libglib2.0-0
+
 WORKDIR /app
 
 COPY . .

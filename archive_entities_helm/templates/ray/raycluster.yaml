@@ -5,6 +5,14 @@ metadata:
 spec:
   rayVersion: {{.Values.ray.rayVersion}}
   headGroupSpec:
+    headService:
+      metadata:
+        name: ray-head-service
+      spec:
+        ports:
+          - protocol: TCP
+            port: 80
+        type: LoadBalancer # Change to ClusterIP if using an Ingress
     rayStartParams:
       dashboard-host: {{.Values.ray.dashboardHost}}
     template:
@@ -14,7 +22,7 @@ spec:
             image: {{.Values.ray.image}}
             imagePullPolicy: Always
             resources:
-              limits: {{.Values.ray.head.resources.limits}}
+              limits: {cpu: {{.Values.ray.head.resources.cpu}}, memory: {{.Values.ray.head.resources.memory}}}
   workerGroupSpecs:
   - replicas: {{.Values.ray.worker.replicas}}
     minReplicas: {{.Values.ray.worker.minReplicas}}
@@ -28,4 +36,4 @@ spec:
             image: {{.Values.ray.image}}
             imagePullPolicy: Always
             resources:
-              limits: {{.Values.ray.worker.resources.limits}}
+              limits: {cpu: {{.Values.ray.worker.resources.cpu}}, memory: {{.Values.ray.worker.resources.memory}}}
