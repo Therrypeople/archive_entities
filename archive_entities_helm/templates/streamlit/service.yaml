@@ -7,6 +7,6 @@ spec:
     app: streamlit
   ports:
     - protocol: TCP
-      port: {{.Values.streamlit.svc.port}}
-      targetPort: {{.Values.streamlit.svc.port}}
-  type: LoadBalancer # Change to ClusterIP if using an Ingress
+      port: 8080
+      targetPort: {{.Values.streamlit.port}}
+  type: ClusterIP # Change to ClusterIP if using an Ingress

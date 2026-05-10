@@ -1,7 +1,7 @@
 apiVersion: ray.io/v1
 kind: RayCluster
 metadata:
-  name: raycluster-sample
+  name: {{.Values.ray.name}}
 spec:
   rayVersion: '2.9.0'
   headGroupSpec:

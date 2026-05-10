@@ -9,4 +9,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 5005
-  type: LoadBalancer # Change to ClusterIP if using an Ingress
+  type: ClusterIP # Change to ClusterIP if using an Ingress

@@ -1,20 +1,21 @@
 ray:
-
-neodash:
-
+  name: raycluster
+  image: ghcr.io/therrypeople/archive_entities/ray:latest
 
 streamlit:
+  image: ghcr.io/therrypeople/archive_entities/streamlit:latest
   port: 8501
 
-# values.yaml
+
 neo4j:
   neo4j:
     # Mandatory: The internal name for the Neo4j instance
     name: "parish-records-kg"
     # Select edition: "community" (default) or "enterprise"
     edition: "community"
-    # Accept the license if using Enterprise edition
-    acceptLicenseAgreement: "no"
+  volumes:
+    data:
+      mode: defaultStorageClass
 
 
 neodash:
