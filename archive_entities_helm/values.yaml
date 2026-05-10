@@ -5,7 +5,10 @@ ray:
 streamlit:
   image: ghcr.io/therrypeople/archive_entities/streamlit:latest
   port: 8501
-
+  rayURI: raycluster-head-svc.default.svc.cluster.local:10001
+  neo4jURI: archive-entities.default.svc.cluster.local
+  neo4jPASSWORD: neo4j
+  neo4jUSERNAME: neo4j
 
 neo4j:
   neo4j:
@@ -13,6 +16,7 @@ neo4j:
     name: "parish-records-kg"
     # Select edition: "community" (default) or "enterprise"
     edition: "community"
+    password: neo4j
   volumes:
     data:
       mode: defaultStorageClass
@@ -20,4 +24,4 @@ neo4j:
 
 neodash:
   neo4j:
-    url: "neo4j://my-neo4j-service:7687"
+    url: "neo4j://archive-entities.default.svc.cluster.local:7687"

@@ -1,7 +1,5 @@
 import streamlit as st
 import logging
-import pandas as pd
-import time
 import ray
 from utils import Neo4JDatabase
 from utils import ray_extract_entities
@@ -24,8 +22,8 @@ except Exception as e:
 uploaded_files = st.file_uploader("Choose files", accept_multiple_files=True, type=["png","jpg"])
 
 with st.container(horizontal=True):
-    st.link_button("Ray Processing Dashboard", "https://google.com")
-    st.link_button("Neo4j Dashboard", "https://google.com")
+    st.link_button("Ray Processing Dashboard", "http://localhost:8080")
+    st.link_button("Neo4j Dashboard", "http://localhost:8060")
 
 status = st.empty()
 if uploaded_files:
