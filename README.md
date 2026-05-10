@@ -62,4 +62,12 @@ make standdown
 ```
 ## Next Steps
 
-If
+Further work to do on this to get it into a better / more 'production-ready' state would be:
+
+- Make the helm charts more configurable and better documented
+- Properly configure elements for security, database passwords using secrets, SSL, ect...
+- Scale out processing if I get access to greater compute.
+- Make streamlit UI nicer with more progress feedback.
+- Add additional document extraction (more metadata, embedding, ect...)
+- Add graph based enrichments such as 
+- Generally increase documentation.

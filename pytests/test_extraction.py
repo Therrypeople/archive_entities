@@ -120,10 +120,8 @@ def expected_result_2():
 
 def test_entity_extraction_1(test_image_1,expected_result_1):
     entities = ocr_extract_entities(**test_image_1)
-    print(entities)
     assert entities == expected_result_1
 
 def test_entity_extraction_2(test_image_2,expected_result_2):
     entities = ocr_extract_entities(**test_image_2)
-    print(entities)
     assert entities == expected_result_2
