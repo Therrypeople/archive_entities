@@ -4,8 +4,8 @@
 ## Aim
 
 The purpose of this repository is to demonstrate the uses of:
-- Ray
-- Devops Pipelines
+- Ray for distributed workloads
+- Devops Pipelines and Git CI/CD
 - K8s and Docker
 - Python for Data Processing / Wrangling
 
@@ -35,6 +35,8 @@ Kubectl
 
 3) Internet Access
 
+4) Create the following secrets
+
 ### Running Locally
 
 1) First run the below command to stand up the cluster and associated applications. Note: some additional configuration may be required to get the ports to line up for local K3D ingress.
@@ -44,12 +46,17 @@ make standup
 
 ```
 
-2)
+2) Especially Ray may take several minutes to stand up. Once it is ready the following services will be available on your localhost:
 
-3)
+- 8060 Neo4j Dashboard 
+
+- 8070 Streamlit 
+
+- 8080 Ray Dashboard
+
+
+3) To teardown all of the resouces run the following.
+
 ```
 make standdown
 ```
-
-Please ensure that the README.md is concise and
-suitably descriptive.
